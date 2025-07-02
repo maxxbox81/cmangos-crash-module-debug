@@ -6,11 +6,11 @@ Patch collection to fix crashes and stability issues in CMaNGOS modules (e.g., P
 
 | Patch File | Description | Crash Screenshot |
 |------------|-------------|------------------|
-| [0001-fix-ObjectGridLoaderxx-LoadHelper-crash.patch](0001-fix-ObjectGridLoaderxx-LoadHelper-crash.patch) | xxFixes a potential crash in `LoadHelper` caused by `IsInWorld()` assertion failure | [1️⃣ View](xximages/Objektgridloadererror_0001_1.png)<br>[2️⃣ View](xximages/Objektgridloadererror_0001_2.png) |
+| [M0001-fix-NamedObjectContext-nullptr-crash.patch](M0001-fix-NamedObjectContext-nullptr-crash.patch) | Fixes a potential crash when NamedObjectContext::create() returns a null pointer | [1️⃣ View](Namedobjectcontect_M0001_1.png)<br>[2️⃣ View](Namedobjectcontect_M0001_2.png) |
 
 ## 💡 Usage
 
 ```bash
 cd /opt/cmangos/mangos
-git apply /opt/cmangos/mangos/patches/modules/M0001-fix-PlayerBot-UpdateInternal-crash.patch
+git apply /opt/cmangos/mangos/patches/modules/M0001-fix-NamedObjectContext-nullptr-crash.patch
 
