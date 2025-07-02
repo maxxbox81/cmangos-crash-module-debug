@@ -1,6 +1,7 @@
 # cmangos-crash-module-debug
 
 Patch collection to fix crashes and stability issues in CMaNGOS modules (e.g., PlayerBots, TrainingDummies, etc.)
+➡️ Core-related crash patches are available at [cmangos-crash-debug](https://github.com/maxxbox81/cmangos-crash-debug)
 
 ## 🛠️ Included Patches
 
