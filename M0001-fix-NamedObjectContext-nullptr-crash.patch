@@ -1,0 +1,37 @@
+diff --git a/playerbot/strategy/NamedObjectContext.h b/playerbot/strategy/NamedObjectContext.h
+index 4ef38954..c645a61f 100644
+--- a/playerbot/strategy/NamedObjectContext.h
++++ b/playerbot/strategy/NamedObjectContext.h
+@@ -201,13 +201,26 @@ namespace ai
+         NamedObjectContext(bool shared = false, bool supportsSiblings = false) :
+             NamedObjectFactory<T>(), shared(shared), supportsSiblings(supportsSiblings) {}
+ 
+-        T* create(std::string name, PlayerbotAI* ai)
+-        {
+-            if (created.find(name) == created.end())
+-                return created[name] = NamedObjectFactory<T>::create(name, ai);
++T* create(std::string name, PlayerbotAI* ai)
++{
++    auto it = created.find(name);
++    if (it != created.end())
++        return it->second;
+ 
+-            return created[name];
+-        }
++    T* obj = NamedObjectFactory<T>::create(name, ai);
++    if (obj)
++    {
++        created[name] = obj;
++    }
++    else
++    {
++#ifdef MANGOS_DEBUG
++        sLog.outError("NamedObjectContext::create - failed to create object: %s", name.c_str());
++#endif
++    }
++
++    return obj;
++}
+ 
+         virtual ~NamedObjectContext()
+         {
