@@ -8,7 +8,7 @@ Patch collection to fix crashes and stability issues in CMaNGOS modules (e.g., P
 | Patch File | Description | Crash Screenshot |
 |------------|-------------|------------------|
 | [M0001-fix-NamedObjectContext-nullptr-crash.patch](M0001-fix-NamedObjectContext-nullptr-crash.patch) (Playerbots) | Fixes a potential crash when NamedObjectContext::create() returns a null pointer | [1️⃣ View](images/M0001_1_Namedobjectcontect.png)<br>[2️⃣ View](images/M0001_2_Namedobjectcontect.png) |
-| [M0002-fix-EmptyChatcrash.patch](M0002-fix-EmptyChatcrash.patch) (Playerbots) | Prevent crash in PlayerbotAI by validating strings and null pointers in queued chat replies | [1️⃣ View](images/M0002-fix-EmptyChatcrash.png)<br>[2️⃣ View](images/M0002-fix-EmptyChatcrash.png) |
+| [M0002-fix-EmptyChatcrash.patch](M0002-fix-EmptyChatcrash.patch) (Playerbots) | Prevent crash in PlayerbotAI by validating strings and null pointers in queued chat replies | [1️⃣ View](images/M0002-fix-EmptyChatcrash.png)<br> |
 
 ## 💡 Usage
 
