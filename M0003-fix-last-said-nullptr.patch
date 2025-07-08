@@ -1,0 +1,66 @@
+diff --git a/src/modules/PlayerBots/playerbot/PlayerbotAI.cpp b/src/modules/PlayerBots/playerbot/PlayerbotAI.cpp
+index 1111111..2222222 100644
+--- a/src/modules/PlayerBots/playerbot/PlayerbotAI.cpp
++++ b/src/modules/PlayerBots/playerbot/PlayerbotAI.cpp
+@@ -1668,7 +1668,9 @@ void PlayerbotAI::SomeFunction()
+-    time_t lastChat = GetAiObjectContext()->GetValue<time_t>("last said", "chat")->Get();
++    Value<time_t>* val1 = GetAiObjectContext()->GetValue<time_t>("last said", "chat");
++    time_t lastChat = val1 ? val1->Get() : 0;
+ 
+
+
+diff --git a/src/modules/PlayerBots/playerbot/strategy/actions/SayAction.cpp b/src/modules/PlayerBots/playerbot/strategy/actions/SayAction.cpp
+index 3333333..4444444 100644
+--- a/src/modules/PlayerBots/playerbot/strategy/actions/SayAction.cpp
++++ b/src/modules/PlayerBots/playerbot/strategy/actions/SayAction.cpp
+@@ -61,7 +61,9 @@ void SayAction::Execute()
+-    ai->GetAiObjectContext()->GetValue<time_t>("last said", qualifier)->Set(nextTime);
++    Value<time_t>* val3 = ai->GetAiObjectContext()->GetValue<time_t>("last said", qualifier);
++    if (val3)
++        val3->Set(nextTime);
+
+@@ -93,7 +95,9 @@ void SayAction::SomeOther()
+-    memberAi->GetAiObjectContext()->GetValue<time_t>("last said", qualifier)->Set(nextTime + (20 * ++index) + urand(1, 15));
++    Value<time_t>* val4 = memberAi->GetAiObjectContext()->GetValue<time_t>("last said", qualifier);
++    if (val4)
++        val4->Set(nextTime + (20 * ++index) + urand(1, 15));
+
+@@ -661,7 +665,9 @@ void SayAction::SomeNext()
+-    bot->GetPlayerbotAI()->GetAiObjectContext()->GetValue<time_t>("last said", "chat")->Set(time(0) + urand(5, 25));
++    Value<time_t>* val5 = bot->GetPlayerbotAI()->GetAiObjectContext()->GetValue<time_t>("last said", "chat");
++    if (val5)
++        val5->Set(time(0) + urand(5, 25));
+
+@@ -745,7 +751,9 @@ void SayAction::OtherCall()
+-    bot->GetPlayerbotAI()->GetAiObjectContext()->GetValue<time_t>("last said", "chat")->Set(time(0) + urand(5, 60));
++    Value<time_t>* val6 = bot->GetPlayerbotAI()->GetAiObjectContext()->GetValue<time_t>("last said", "chat");
++    if (val6)
++        val6->Set(time(0) + urand(5, 60));
+
+@@ -841,7 +849,9 @@ void SayAction::SomethingElse()
+-    bot->GetPlayerbotAI()->GetAiObjectContext()->GetValue<time_t>("last said", "chat")->Set(time(0) + urand(5, 60));
++    Value<time_t>* val7 = bot->GetPlayerbotAI()->GetAiObjectContext()->GetValue<time_t>("last said", "chat");
++    if (val7)
++        val7->Set(time(0) + urand(5, 60));
+
+@@ -930,7 +940,9 @@ void SayAction::Extra()
+-    bot->GetPlayerbotAI()->GetAiObjectContext()->GetValue<time_t>("last said", "chat")->Set(time(0) + urand(5, 25));
++    Value<time_t>* val8 = bot->GetPlayerbotAI()->GetAiObjectContext()->GetValue<time_t>("last said", "chat");
++    if (val8)
++        val8->Set(time(0) + urand(5, 25));
+
+@@ -1007,7 +1019,9 @@ void SayAction::Final()
+-    bot->GetPlayerbotAI()->GetAiObjectContext()->GetValue<time_t>("last said", "chat")->Set(time(0) + urand(5, 25));
++    Value<time_t>* val9 = bot->GetPlayerbotAI()->GetAiObjectContext()->GetValue<time_t>("last said", "chat");
++    if (val9)
++        val9->Set(time(0) + urand(5, 25));
+
+diff --git a/src/modules/PlayerBots/playerbot/strategy/actions/SuggestWhatToDoAction.cpp b/src/modules/PlayerBots/playerbot/strategy/actions/SuggestWhatToDoAction.cpp
+index 5555555..6666666 100644
+--- a/src/modules/PlayerBots/playerbot/strategy/actions/SuggestWhatToDoAction.cpp
++++ b/src/modules/PlayerBots/playerbot/strategy/actions/SuggestWhatToDoAction.cpp
+@@ -50,7 +50,9 @@ void SuggestWhatToDoAction::DoSomething()
+-    ai->GetAiObjectContext()->GetValue<time_t>("last said", qualifier)->Set(time(0) + urand(1, 60));
++    Value<time_t>* val10 = ai->GetAiObjectContext()->GetValue<time_t>("last said", qualifier);
++    if (val10)
++        val10->Set(time(0) + urand(1, 60));
