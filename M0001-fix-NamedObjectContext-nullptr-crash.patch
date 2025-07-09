@@ -1,7 +1,7 @@
-diff --git a/playerbot/strategy/NamedObjectContext.h b/playerbot/strategy/NamedObjectContext.h
+diff --git a/src/modules/PlayerBots/playerbot/strategy/NamedObjectContext.h b/src/modules/PlayerBots/playerbot/strategy/NamedObjectContext.h
 index 4ef38954..c645a61f 100644
---- a/playerbot/strategy/NamedObjectContext.h
-+++ b/playerbot/strategy/NamedObjectContext.h
+--- a/src/modules/PlayerBots/playerbot/strategy/NamedObjectContext.h
++++ b/src/modules/PlayerBots/playerbot/strategy/NamedObjectContext.h
 @@ -201,13 +201,26 @@ namespace ai
          NamedObjectContext(bool shared = false, bool supportsSiblings = false) :
              NamedObjectFactory<T>(), shared(shared), supportsSiblings(supportsSiblings) {}
