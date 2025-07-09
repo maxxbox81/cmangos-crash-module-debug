@@ -1,5 +1,5 @@
---- /tmp/DualspecModule_old.cpp	2025-07-09 00:52:06.627552712 +0200
-+++ /opt/cmangos/mangos/src/modules/dualspec/src/DualspecModule.cpp	2025-07-09 00:37:27.631926896 +0200
+--- /tmp/old_DualspecModule.cpp	2025-07-09 15:39:04.033669373 +0200
++++ /opt/cmangos/mangos/src/modules/dualspec/src/DualspecModule.cpp	2025-07-09 12:45:07.786817053 +0200
 @@ -98,12 +98,25 @@
                  }
  
@@ -55,13 +55,13 @@
 -                    player->GetPlayerMenu()->GetGossipMenu().AddMenuItem(GOSSIP_ICON_MONEY_BAG, purchase, GOSSIP_SENDER_MAIN, GOSSIP_ACTION_INFO_DEF, areYouSure, false);
 -                    player->GetPlayerMenu()->GetGossipMenu().AddMenuItem(GOSSIP_ICON_MONEY_BAG, costIs, GOSSIP_SENDER_MAIN, GOSSIP_ACTION_INFO_DEF, "", 0);
 +                 const std::string purchase = player->GetSession()->GetMangosString(DUAL_SPEC_PURCHASE);
-+/*                 const std::string costIs = player->GetSession()->GetMangosString(DUAL_SPEC_COST_IS) + costStr + " g";
++//                 const std::string costIs = player->GetSession()->GetMangosString(DUAL_SPEC_COST_IS) + costStr + " g";
 +
 +//                 std::string fullText = purchase + " – " + costStr + " g";
 +//                 player->GetPlayerMenu()->GetGossipMenu().AddMenuItem(GOSSIP_ICON_MONEY_BAG, fullText, GOSSIP_SENDER_MAIN, GOSSIP_ACTION_INFO_DEF, areYouSure, false);
 +
 +//                 std::string merged = purchase + " (" + costStr + " g)";
-+*/                 player->GetPlayerMenu()->GetGossipMenu().AddMenuItem(GOSSIP_ICON_MONEY_BAG, merged, GOSSIP_SENDER_MAIN, GOSSIP_ACTION_INFO_DEF, areYouSure, false);
++//                 player->GetPlayerMenu()->GetGossipMenu().AddMenuItem(GOSSIP_ICON_MONEY_BAG, merged, GOSSIP_SENDER_MAIN, GOSSIP_ACTION_INFO_DEF, areYouSure, false);
 +
 +                   player->GetPlayerMenu()->GetGossipMenu().AddMenuItem(GOSSIP_ICON_MONEY_BAG, purchase, GOSSIP_SENDER_MAIN, GOSSIP_ACTION_INFO_DEF, areYouSure, false);
 +//                 player->GetPlayerMenu()->GetGossipMenu().AddMenuItem(GOSSIP_ICON_MONEY_BAG, costIs, GOSSIP_SENDER_MAIN, GOSSIP_ACTION_INFO_DEF, "", 0);
@@ -121,32 +121,29 @@
                              specNameString << (specName.empty() ? player->GetSession()->GetMangosString(DUAL_SPEC_UNNAMED) : specName);
                              specNameString << (spec == activeSpec ? player->GetSession()->GetMangosString(DUAL_SPEC_ACTIVE) : "");
                              player->GetPlayerMenu()->GetGossipMenu().AddMenuItem(GOSSIP_ICON_CHAT, specNameString.str(), GOSSIP_SENDER_MAIN, GOSSIP_ACTION_INFO_DEF + (1 + spec), "", 0);
-@@ -301,7 +344,28 @@
- 
+@@ -302,6 +345,26 @@
                          player->GetPlayerMenu()->SendGossipMenu(DUALSPEC_NPC_TEXT, creature->GetObjectGuid());
                          break;
--                    }
-+*/                    }
+                     }
++*/
++                       case GOSSIP_ACTION_INFO_DEF + 5:
++                      {
++                          const uint8 activeSpec = GetPlayerActiveSpec(playerId);
++                          const uint8 targetSpec = (activeSpec == 0) ? 1 : 0;
++                          const std::string label = player->GetSession()->GetMangosString(DUAL_SPEC_CHANGE_MY_SPEC); // z.B. "Duale Spezialisierung wechseln"
 +
-+case GOSSIP_ACTION_INFO_DEF + 5:
-+{
-+    const uint8 activeSpec = GetPlayerActiveSpec(playerId);
-+    const uint8 targetSpec = (activeSpec == 0) ? 1 : 0;
++                          player->GetPlayerMenu()->GetGossipMenu().AddMenuItem(
++                          GOSSIP_ICON_CHAT,
++                          label,
++                          GOSSIP_SENDER_MAIN,
++                          GOSSIP_ACTION_INFO_DEF + 1 + targetSpec,
++                          "",
++                          0
++                          );
 +
-+    const std::string label = player->GetSession()->GetMangosString(DUAL_SPEC_CHANGE_MY_SPEC); // z.B. "Duale Spezialisierung wechseln"
-+
-+    player->GetPlayerMenu()->GetGossipMenu().AddMenuItem(
-+        GOSSIP_ICON_CHAT,
-+        label,
-+        GOSSIP_SENDER_MAIN,
-+        GOSSIP_ACTION_INFO_DEF + 1 + targetSpec,
-+        "",
-+        0
-+    );
-+
-+    player->GetPlayerMenu()->SendGossipMenu(DUALSPEC_NPC_TEXT, creature->GetObjectGuid());
-+    break;
-+}
++                        player->GetPlayerMenu()->SendGossipMenu(DUALSPEC_NPC_TEXT, creature->GetObjectGuid());
++                        break;
++                      }
 +
                  }
  
